@@ -165,10 +165,24 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
-			.promise;
+		const { promise, child } = runCLI(
+			['--delete'],
+			[keys.enter, keys.enter]
+		);
 
-		console.log('DEBUG DELETE OUTPUT:', JSON.stringify(String(result)));
+		const stderrChunks: Buffer[] = [];
+		child.stderr?.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
+
+		let result: unknown;
+		try {
+			result = await promise;
+		} catch (err) {
+			result = err;
+		}
+
+		const stderrOutput = Buffer.concat(stderrChunks).toString();
+		console.log('DEBUG STDOUT:', JSON.stringify(String(result)));
+		console.log('DEBUG STDERR:', JSON.stringify(stderrOutput));
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
