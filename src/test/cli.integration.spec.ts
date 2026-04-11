@@ -168,7 +168,10 @@ describe('Integration CLI (Deploy)', function () {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
-		ok(String(result).length > 0, `Delete output was empty: ${String(result)}`);
+		ok(
+			String(result).length > 0,
+			`Delete output was empty: ${String(result)}`
+		);
 
 		strictEqual(await deleted(addRepoSuffix), true);
 
@@ -197,7 +200,10 @@ describe('Integration CLI (Deploy)', function () {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
-		ok(String(result).length > 0, `Delete output was empty: ${String(result)}`);
+		ok(
+			String(result).length > 0,
+			`Delete output was empty: ${String(result)}`
+		);
 
 		strictEqual(await deleted(workDirSuffix), true);
 
@@ -229,7 +235,10 @@ describe('Integration CLI (Deploy)', function () {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
-		ok(String(result).length > 0, `Delete output was empty: ${String(result)}`);
+		ok(
+			String(result).length > 0,
+			`Delete output was empty: ${String(result)}`
+		);
 
 		strictEqual(await deleted(workDirSuffix), true);
 
@@ -262,7 +271,10 @@ describe('Integration CLI (Deploy)', function () {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
-		ok(String(result).length > 0, `Delete output was empty: ${String(result)}`);
+		ok(
+			String(result).length > 0,
+			`Delete output was empty: ${String(result)}`
+		);
 
 		strictEqual(await deleted('env'), true);
 
@@ -330,7 +342,10 @@ describe('Integration CLI (Deploy)', function () {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
-		ok(String(result).length > 0, `Delete output was empty: ${String(result)}`);
+		ok(
+			String(result).length > 0,
+			`Delete output was empty: ${String(result)}`
+		);
 
 		strictEqual(await deleted(workDirSuffix), true);
 
