@@ -196,8 +196,10 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
-			.promise;
+		const result = await runCLI(
+			['--delete'],
+			[keys.enter, keys.enter, keys.enter, keys.enter, keys.enter]
+		).promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
@@ -228,8 +230,10 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
-			.promise;
+		const result = await runCLI(
+			['--delete'],
+			[keys.enter, keys.enter, keys.enter, keys.enter, keys.enter]
+		).promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
@@ -261,8 +265,10 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
-			.promise;
+		const result = await runCLI(
+			['--delete'],
+			[keys.enter, keys.enter, keys.enter, keys.enter, keys.enter]
+		).promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
@@ -329,8 +335,10 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
-			.promise;
+		const result = await runCLI(
+			['--delete'],
+			[keys.enter, keys.enter, keys.enter, keys.enter, keys.enter]
+		).promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
