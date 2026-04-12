@@ -125,19 +125,6 @@ describe('Integration CLI (Deploy)', function () {
 		}
 	});
 
-	// --addrepo
-	it('Should be able to deploy repository using --addrepo flag', async () => {
-		const result = await runCLI(
-			[`--addrepo=${url}`, '--plan=Essential'],
-			[keys.enter, 'n', keys.enter, keys.kill]
-		).promise;
-
-		ok(String(result).includes('i Deploying...\n'));
-
-		strictEqual(await deployed(addRepoSuffix), true);
-		return result;
-	});
-
 	// --inspect with invalid parameter
 	it('Should fail --inspect command with proper output', async () => {
 		try {
@@ -163,10 +150,25 @@ describe('Integration CLI (Deploy)', function () {
 			'X Invalid format passed to inspect, valid formats are: Table, Raw, OpenAPIv3\n'
 		));
 
+	// --addrepo
+	it('Should be able to deploy repository using --addrepo flag', async () => {
+		const result = await runCLI(
+			[`--addrepo=${url}`, '--plan=Essential'],
+			[keys.enter, 'n', keys.enter, keys.kill]
+		).promise;
+
+		ok(String(result).includes('i Deploying...\n'));
+
+		strictEqual(await deployed(addRepoSuffix), true);
+		return result;
+	});
+
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
-			.promise;
+		const result = await runCLI(
+			['--delete'],
+			[keys.enter, keys.enter, keys.enter, keys.enter, keys.enter]
+		).promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
@@ -194,7 +196,7 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
+		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
 			.promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
@@ -226,7 +228,7 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
+		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
 			.promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
@@ -259,7 +261,7 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
+		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
 			.promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
@@ -327,7 +329,7 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
+		const result = await runCLI(['--delete'], [keys.enter, keys.enter, keys.enter, keys.enter, keys.enter])
 			.promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));

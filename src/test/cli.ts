@@ -75,7 +75,7 @@ export const runWithInput = (
 
 			killTimeout = setTimeout(() => {
 				child.kill(os.constants.signals.SIGTERM);
-			}, 30000);
+			}, 3000);
 
 			return;
 		}
