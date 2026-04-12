@@ -52,7 +52,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --token
-	it.skip('Should be able to login using --token flag', async function () {
+	it('Should be able to login using --token flag', async function () {
 		const file = await load();
 		const token = file.token || '';
 
@@ -76,7 +76,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// TODO: --confDir
-	it.skip('Should be able to login using --confDir flag', async function () {
+	it('Should be able to login using --confDir flag', async function () {
 		const file = await load();
 		const token = file.token || '';
 
@@ -104,14 +104,14 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --help
-	it.skip('Should be able to print help guide using --help flag', async () => {
+	it('Should be able to print help guide using --help flag', async () => {
 		const result = await runCLI(['--help'], [keys.enter]).promise;
 
 		ok(String(result).includes('Official CLI for metacall-deploy\n'));
 	});
 
 	// --unknown-flags
-	it.skip('Should be able to handle unknown flag', async () => {
+	it('Should be able to handle unknown flag', async () => {
 		try {
 			const result = await runCLI(['--yeet'], [keys.enter]).promise;
 
@@ -139,7 +139,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --inspect with invalid parameter
-	it.skip('Should fail --inspect command with proper output', async () => {
+	it('Should fail --inspect command with proper output', async () => {
 		try {
 			const result = await runCLI(['--inspect', 'yeet'], [keys.enter])
 				.promise;
@@ -157,7 +157,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --inspect without parameter
-	it.skip('Should fail --inspect command with proper output', async () =>
+	it('Should fail --inspect command with proper output', async () =>
 		notStrictEqual(
 			await runCLI(['--inspect'], [keys.enter]).promise,
 			'X Invalid format passed to inspect, valid formats are: Table, Raw, OpenAPIv3\n'
@@ -165,24 +165,8 @@ describe('Integration CLI (Deploy)', function () {
 
 	// --delete
 	it('Should be able to delete deployed repository using --delete flag', async () => {
-		const { promise, child } = runCLI(
-			['--delete'],
-			[keys.enter, keys.enter]
-		);
-
-		const stderrChunks: Buffer[] = [];
-		child.stderr?.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
-
-		let result: unknown;
-		try {
-			result = await promise;
-		} catch (err) {
-			result = err;
-		}
-
-		const stderrOutput = Buffer.concat(stderrChunks).toString();
-		console.log('DEBUG STDOUT:', JSON.stringify(String(result)));
-		console.log('DEBUG STDERR:', JSON.stringify(stderrOutput));
+		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
+			.promise;
 
 		ok(String(result).includes('i Deploy Delete Succeed\n'));
 
@@ -192,7 +176,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --workdir & --projectName
-	it.skip('Should be able to deploy repository using --workdir & --projectName flag', async () => {
+	it('Should be able to deploy repository using --workdir & --projectName flag', async () => {
 		const result = await runCLI(
 			[
 				`--workdir=${filePath}`,
@@ -209,7 +193,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --delete
-	it.skip('Should be able to delete deployed repository using --delete flag', async () => {
+	it('Should be able to delete deployed repository using --delete flag', async () => {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
@@ -221,7 +205,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// with env vars
-	it.skip('Should be able to deploy repository using --addrepo flag with environment vars', async () => {
+	it('Should be able to deploy repository using --addrepo flag with environment vars', async () => {
 		const result = await runCLI(
 			[`--addrepo=${url}`, '--plan=Essential'],
 			[
@@ -241,7 +225,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --delete
-	it.skip('Should be able to delete deployed repository using --delete flag', async () => {
+	it('Should be able to delete deployed repository using --delete flag', async () => {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
@@ -253,7 +237,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// test .env file
-	it.skip('Should be able to deploy repository using --workdir & getting the .env file', async () => {
+	it('Should be able to deploy repository using --workdir & getting the .env file', async () => {
 		const projectPath = join(
 			process.cwd(),
 			'src',
@@ -274,7 +258,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --delete
-	it.skip('Should be able to delete deployed repository using --delete flag', async () => {
+	it('Should be able to delete deployed repository using --delete flag', async () => {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
@@ -286,7 +270,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --workdir & --projectName & --plan
-	it.skip('Should be able to deploy repository using --workdir & --plan flag', async () => {
+	it('Should be able to deploy repository using --workdir & --plan flag', async () => {
 		const result = await runCLI(
 			[
 				`--workdir=${filePath}`,
@@ -342,7 +326,7 @@ describe('Integration CLI (Deploy)', function () {
 	// });
 
 	// --delete
-	it.skip('Should be able to delete deployed repository using --delete flag', async () => {
+	it('Should be able to delete deployed repository using --delete flag', async () => {
 		const result = await runCLI(['--delete'], [keys.enter, keys.enter])
 			.promise;
 
@@ -354,7 +338,7 @@ describe('Integration CLI (Deploy)', function () {
 	});
 
 	// --listPlans
-	it.skip("Should be able to list all the plans in user's account", async () => {
+	it("Should be able to list all the plans in user's account", async () => {
 		const result = await runCLI(['--listPlans'], [keys.enter]).promise;
 		ok(
 			String(result).length > 0,
