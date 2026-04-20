@@ -33,23 +33,12 @@ export const run = (
 		throw new Error('Invalid process path');
 	}
 
-	// TODO: Implement this properly for better debugging
-	/* const debugArgs = isInDebugMode() ? ['--inspect-brk=0'] : []; */
-
-	const child = spawn('node', [/*...debugArgs,*/ path, ...args], {
-		env: Object.assign(
-			{
-				NODE_ENV: 'test',
-				PATH,
-				HOME
-			},
-			env
-		),
+	const child = spawn('node', [path, ...args], {
+		env: Object.assign({ NODE_ENV: 'test', PATH, HOME }, env),
 		stdio: [null, null, null, 'ipc']
 	});
 
 	child.stdin?.setDefaultEncoding('utf-8');
-
 	return child;
 };
 
@@ -92,7 +81,6 @@ export const runWithInput = (
 		promise: new Promise((resolve, reject) => {
 			child.stderr?.once('data', err => {
 				child.stdin?.end();
-
 				if (childTimeout) {
 					clearTimeout(childTimeout);
 					inputs = [];

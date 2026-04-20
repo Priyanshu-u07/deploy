@@ -27,19 +27,6 @@ export const deleteBySelection = async (api: APIInterface): Promise<void> => {
 	try {
 		const allDeployments = await api.inspect();
 
-		// Debug: log all deployments to diagnose "No deployment found"
-		// eslint-disable-next-line no-console
-		console.log(
-			'DEBUG inspect all:',
-			JSON.stringify(
-				allDeployments.map(d => ({
-					suffix: d.suffix,
-					status: d.status,
-					version: d.version
-				}))
-			)
-		);
-
 		const deployments: Deployment[] = allDeployments.filter(
 			dep => dep.status === 'ready'
 		);
@@ -61,5 +48,3 @@ export const deleteBySelection = async (api: APIInterface): Promise<void> => {
 		error(String(err));
 	}
 };
-
-// This can be better
